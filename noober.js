@@ -14,38 +14,38 @@ async function pageLoaded() {
   
   
   
-// //code to loop through the riders
+//code to loop through the riders
 
-let renderRide = function(ride) {
+let renderRide = function(leg) {
 
   return `
     <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
       <i class="fas fa-car-side"></i>
-      <span>Noober X</span>
+      <span>${leg.levelOfService}</span>
     </h1>
 
-    <div class="border-4 border-gray-900 p-4 my-4 text-left">
+    <div class="border-4 border-gray-900 p-4 my-4 text-left"> 
       <div class="flex">
         <div class="w-1/2">
-          <h2 class="text-2xl py-1">${passengerDetails.first} ${passengerDetails.last}</h2>
-          <p class="font-bold text-gray-600">${passengerDetails.phonenumber}</p>
+          <h2 class="text-2xl py-1">${leg.passengerDetails.first} ${leg.passengerDetails.last}</h2>
+          <p class="font-bold text-gray-600">${leg.passengerDetails.phoneNumber}</p>
         </div>
         <div class="w-1/2 text-right">
           <span class="rounded-xl bg-gray-600 text-white p-2">
-            ${numberOfPassengers}
+            ${leg.numberOfPassengers} Passenger
           </span>
         </div>
       </div>
       <div class="mt-4 flex">
         <div class="w-1/2">
           <div class="text-sm font-bold text-gray-600">PICKUP</div>
-          <p>${pickupLocation.address}</p>
-          <p>${pickupLocation.city}, ${pickupLocation.state} ${pickupLocation.zip}</p>
+          <p>${leg.pickupLocation.address}</p>
+          <p>${leg.pickupLocation.city}, ${leg.pickupLocation.state} ${leg.pickupLocation.zip}</p>
         </div>
         <div class="w-1/2">
           <div class="text-sm font-bold text-gray-600">DROPOFF</div>
-          <p>${dropoffLocation.address}</p>
-          <p>${dropoffLocation.city}, ${dropoffLocation.state} ${dropoffLocation.zip}</p>
+          <p>${leg.dropoffLocation.address}</p>
+          <p>${leg.dropoffLocation.city}, ${leg.dropoffLocation.state} ${leg.dropoffLocation.zip}</p>
         </div>
       </div>
     </div>
@@ -56,14 +56,62 @@ let renderRide = function(ride) {
 
 
 for (let i = 0; i < rides.length; i++) {
-  let ride = rides[i] 
-  let element = document.querySelector('.rides')
+   let ride = rides[i] 
+   let element = document.querySelector('.rides') // let indicates your own variable
+ 
+  console.log(ride)
+
+   // index.html is equivalent to document. "Document" represents the html page. Query Selector allows you to select pieces of html from a webpage  
+  // div, body, title are all html element
+  // look for any html element that has a class of CCS. Query selector needs a unique html 
+  // use html as template and javascript looks up data
+ 
+  for(let ix=0; ix < ride.length; ix++){
+   let leg = ride[ix]
+
+   if (ride.length > 1) {
+    levelOfService = 'Noober Pool'
+  } else if (leg.purpleRequested = true){
+    levelofService = "Noober Purple"
+  } else if (leg.numberOfPassengers > 3) {
+    levelOfService = 'Noober XL'
+  } else {
+    levelOfService = 'Noober X'
+  }
+
+  // for(let i = 0; i < rides.length; i++){
+  //   let ride = rides[i]
+  //     for(let j = 0; j < ride.length; j++){
+  //       if (ride.length > 1) {
+  //         levelOfService = 'Noober Pool'
+  //       } else if (ride[0].purpleRequested) {
+  //         levelOfService = 'Noober Purple'
+  //       } else if (ride[0].numberOfPassengers > 3) {
+  //         levelOfService = 'Noober XL'
+  //       } else {
+  //         levelOfService = 'Noober X'
+  //       } 
+       
+   console.log(leg)
+   
+      
+      element.insertAdjacentHTML('beforeend', renderRide(leg))
+
+  //   } else if ([i].purpleRequested) {
+  //     levelOfService = 'Noober Purple'
+}
+}
+
+//console log ride
+//console log leg 
+//
+
+// things you define in the loop have to be referenced in the loop 
 
 
 
-element.insertAdjacentHTML('beforeend', renderProduct(ride))
 
  }
-}
+
 
 window.addEventListener('DOMContentLoaded', pageLoaded)
