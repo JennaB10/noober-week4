@@ -151,7 +151,7 @@ if (leg.purpleRequested == true) {
 //console log leg 
 // things you define in the loop have to be referenced in the loop 
 
-}
+  }
  }
 
 
