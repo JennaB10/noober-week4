@@ -16,13 +16,21 @@ async function pageLoaded() {
   
 //code to loop through the riders
 
+let renderTitle = function() {
+
+  return `
+
+  <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+  <i class="fas fa-car-side"></i>
+  <span>${levelOfService}</span>
+</h1>
+`
+}
+
 let renderRide = function(leg) {
 
   return `
-    <h1 class="inline-block mt-8 px-4 py-2 rounded-xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
-      <i class="fas fa-car-side"></i>
-      <span>${leg.levelOfService}</span>
-    </h1>
+ 
 
     <div class="border-4 border-gray-900 p-4 my-4 text-left"> 
       <div class="flex">
@@ -59,7 +67,8 @@ for (let i = 0; i < rides.length; i++) {
    let ride = rides[i] 
    let element = document.querySelector('.rides') // let indicates your own variable
  
-  console.log(ride)
+     // console.log(i)
+  //console.log(ride)
 
    // index.html is equivalent to document. "Document" represents the html page. Query Selector allows you to select pieces of html from a webpage  
   // div, body, title are all html element
@@ -69,37 +78,40 @@ for (let i = 0; i < rides.length; i++) {
   for(let ix=0; ix < ride.length; ix++){
    let leg = ride[ix]
 
+   console.log(ride)
+   console.log(ride.length)
+
    if (ride.length > 1) {
     levelOfService = 'Noober Pool'
-  } else if (leg.purpleRequested = true){
-    levelofService = "Noober Purple"
+
+    console.log('Noober Pool') 
+
+  } else if (leg.purpleRequested == true){
+    levelOfService = "Noober Purple"
+
+    console.log('Noober Purple') 
+
   } else if (leg.numberOfPassengers > 3) {
     levelOfService = 'Noober XL'
+
+    console.log('Noober XL') 
+
   } else {
     levelOfService = 'Noober X'
-  }
+  
+  console.log('Noober X') 
 
-  // for(let i = 0; i < rides.length; i++){
-  //   let ride = rides[i]
-  //     for(let j = 0; j < ride.length; j++){
-  //       if (ride.length > 1) {
-  //         levelOfService = 'Noober Pool'
-  //       } else if (ride[0].purpleRequested) {
-  //         levelOfService = 'Noober Purple'
-  //       } else if (ride[0].numberOfPassengers > 3) {
-  //         levelOfService = 'Noober XL'
-  //       } else {
-  //         levelOfService = 'Noober X'
-  //       } 
-       
-   console.log(leg)
+  }
+        // console.log(leg)
    
-      
+      //console.log(levelOfService)
+if (ix == 0) {
+  
+      element.insertAdjacentHTML('beforeend', renderTitle())}
+
       element.insertAdjacentHTML('beforeend', renderRide(leg))
 
-  //   } else if ([i].purpleRequested) {
-  //     levelOfService = 'Noober Purple'
-}
+      }
 }
 
 //console log ride
